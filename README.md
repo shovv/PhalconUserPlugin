@@ -16,7 +16,6 @@ This is a plugin based on Vokuro ACL idea.
 
 ### <a id="features"></a>Features
 
-- Login / Register with Facebook account
 - Login / Register with LinkedIn account
 - Login / Register with Twitter account
 - Login / Register with Google account
@@ -234,10 +233,6 @@ Configuration example with connectors:
         ]
     ],
     'connectors' => [
-        'facebook' => [
-            'appId' => 'YOUR_FACEBOOK_APP_ID',
-            'secret' => 'YOUR_FACEBOOK_APP_SECRET'
-        ],
         'linkedIn' => [
             'api_key' => 'YOUR_LINKED_IN_APP_ID',
             'api_secret' => 'YOUR_LINKED_IN_APP_SECRET',
@@ -286,19 +281,6 @@ class UserController extends Controller
         }
 
         $this->view->form = $form;
-    }
-
-    /**
-     * Login with Facebook account
-     */
-    public function loginWithFacebookAction()
-    {
-        try {
-            $this->view->disable();
-            return $this->auth->loginWithFacebook();
-        } catch(AuthException $e) {
-            $this->flash->error('There was an error connectiong to Facebook.');
-        }
     }
 
     /**
@@ -356,6 +338,8 @@ class UserController extends Controller
 ### <a id="known-issues"></a>Known issues
 
 - Twitter does not provide us the email. We are generating a random email for the user. It is your choice how you handle this
+- Facebook lib has no php8 support so it has been removed, login with facebook has been deleted
+- Phalcon/incubator has no phalcon5 support, so there will be workarounds
 
 ### <a id="examples"></a>Examples
 

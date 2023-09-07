@@ -1,7 +1,7 @@
 <?php
 
-use Phalcon\DI;
-use Phalcon\Test\UnitTestCase as PhalconTestCase;
+use Phalcon\Di\Di;
+use Phalcon\Incubator\Test\UnitTestCase as PhalconTestCase;
 
 abstract class UnitTestCase extends PhalconTestCase
 {
@@ -11,7 +11,7 @@ abstract class UnitTestCase extends PhalconTestCase
     protected $_cache;
 
     /**åpöää
-     * @var \Phalcon\Config
+     * @var \Phalcon\Config\Config
      */
     protected $_config;
 
@@ -20,7 +20,7 @@ abstract class UnitTestCase extends PhalconTestCase
      */
     private $_loaded = false;
 
-    public function setUp(Phalcon\DiInterface $di = null, Phalcon\Config $config = null)
+    public function setUp(Phalcon\DiInterface $di = null, Phalcon\Config\Config $config = null): void
     {
         // Load any additional services that might be required during testing
         $di = DI::getDefault();

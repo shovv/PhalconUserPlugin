@@ -3,6 +3,7 @@
 namespace Phalcon\UserPlugin\Models\User;
 
 use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+use Phalcon\Mvc\Model\ResultsetInterface;
 
 class UserProfile extends \Phalcon\Mvc\Model
 {
@@ -314,17 +315,20 @@ class UserProfile extends \Phalcon\Mvc\Model
             'alias' => 'currentLocation',
             'reusable' => true,
         ));
+
+        $this->setSource('user_profile');
     }
 
-    public function getSource()
-    {
-        return 'user_profile';
-    }
+    // @TODO
+    // public function getSource()
+    // {
+    //     return 'user_profile';
+    // }
 
     /**
      * @return UserProfile[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -332,7 +336,7 @@ class UserProfile extends \Phalcon\Mvc\Model
     /**
      * @return UserProfile
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

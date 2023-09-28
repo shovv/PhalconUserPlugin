@@ -3,6 +3,7 @@
 namespace Phalcon\UserPlugin\Models\User;
 
 use Phalcon\Mvc\Model\Validator\Uniqueness;
+use Phalcon\Mvc\Model\ResultsetInterface;
 
 class UserGroups extends \Phalcon\Mvc\Model
 {
@@ -93,15 +94,10 @@ class UserGroups extends \Phalcon\Mvc\Model
         return $this->active;
     }
 
-    public function getSource()
-    {
-        return 'user_groups';
-    }
-
     /**
      * @return UserGroups[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -109,7 +105,7 @@ class UserGroups extends \Phalcon\Mvc\Model
     /**
      * @return UserGroups
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }
@@ -119,6 +115,8 @@ class UserGroups extends \Phalcon\Mvc\Model
         $this->hasMany('id', 'Phalcon\UserPlugin\Models\User\UserPermissions', 'group_id', array(
             'alias' => 'permissions',
         ));
+
+        $this->setSource('user_groups');
     }
 
     /**

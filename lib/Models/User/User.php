@@ -4,6 +4,7 @@ namespace Phalcon\UserPlugin\Models\User;
 
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Uniqueness;
+use Phalcon\Mvc\Model\ResultsetInterface;
 
 class User extends \Phalcon\Mvc\Model
 {
@@ -829,17 +830,14 @@ class User extends \Phalcon\Mvc\Model
                 'action' => \Phalcon\Mvc\Model\Relation::ACTION_CASCADE,
             ),
         ));
-    }
 
-    public function getSource()
-    {
-        return 'user';
+        $this->setSource('user');
     }
 
     /**
      * @return User[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -847,7 +845,7 @@ class User extends \Phalcon\Mvc\Model
     /**
      * @return User
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

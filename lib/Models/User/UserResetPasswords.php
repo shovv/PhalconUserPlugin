@@ -2,6 +2,8 @@
 
 namespace Phalcon\UserPlugin\Models\User;
 
+use Phalcon\Mvc\Model\ResultsetInterface;
+
 /**
  * Phalcon\UserPlugin\Models\User\UserResetPasswords.
  */
@@ -189,7 +191,7 @@ class UserResetPasswords extends \Phalcon\Mvc\Model
     /**
      * @return UserResetPasswords[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -197,7 +199,7 @@ class UserResetPasswords extends \Phalcon\Mvc\Model
     /**
      * @return UserResetPasswords
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

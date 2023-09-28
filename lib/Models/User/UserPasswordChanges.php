@@ -2,6 +2,8 @@
 
 namespace Phalcon\UserPlugin\Models\User;
 
+use Phalcon\Mvc\Model\ResultsetInterface;
+
 /**
  * Phalcon\UserPlugin\Models\User\UserPasswordChanges.
  */
@@ -160,7 +162,7 @@ class UserPasswordChanges extends \Phalcon\Mvc\Model
     /**
      * @return UserPasswordChanges[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -168,7 +170,7 @@ class UserPasswordChanges extends \Phalcon\Mvc\Model
     /**
      * @return UserPasswordChanges
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

@@ -2,6 +2,8 @@
 
 namespace Phalcon\UserPlugin\Models\Location;
 
+use Phalcon\Mvc\Model\ResultsetInterface;
+
 class Locations extends \Phalcon\Mvc\Model
 {
     /**
@@ -395,7 +397,7 @@ class Locations extends \Phalcon\Mvc\Model
     /**
      * @return Locations[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -403,7 +405,7 @@ class Locations extends \Phalcon\Mvc\Model
     /**
      * @return Locations
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

@@ -2,6 +2,8 @@
 
 namespace Phalcon\UserPlugin\Models\User;
 
+use Phalcon\Mvc\Model\ResultsetInterface;
+
 class UserEmailConfirmations extends \Phalcon\Mvc\Model
 {
     /**
@@ -186,7 +188,7 @@ class UserEmailConfirmations extends \Phalcon\Mvc\Model
     /**
      * @return UserEmailConfirmations[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -194,7 +196,7 @@ class UserEmailConfirmations extends \Phalcon\Mvc\Model
     /**
      * @return UserEmailConfirmations
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

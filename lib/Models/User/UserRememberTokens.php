@@ -2,6 +2,8 @@
 
 namespace Phalcon\UserPlugin\Models\User;
 
+use Phalcon\Mvc\Model\ResultsetInterface;
+
 /**
  * Phalcon\UserPlugin\Models\User\UserRememberTokens.
  */
@@ -168,7 +170,7 @@ class UserRememberTokens extends \Phalcon\Mvc\Model
     /**
      * @return UserRememberTokens[]
      */
-    public static function find($parameters = array())
+    public static function find($parameters = array()): ResultsetInterface
     {
         return parent::find($parameters);
     }
@@ -176,7 +178,7 @@ class UserRememberTokens extends \Phalcon\Mvc\Model
     /**
      * @return UserRememberTokens
      */
-    public static function findFirst($parameters = array())
+    public static function findFirst($parameters = array()): \Phalcon\Mvc\ModelInterface | null
     {
         return parent::findFirst($parameters);
     }

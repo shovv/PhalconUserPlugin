@@ -104,7 +104,7 @@ class RegisterForm extends Form
 
         $csrf->addValidator(
             new Identical(array(
-                'value' => $this->security->getSessionToken(),
+                'value' => $this->security->getToken(),
                 'message' => 'CSRF validation failed',
             ))
         );

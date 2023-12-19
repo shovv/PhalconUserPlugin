@@ -24,13 +24,20 @@
         "paragonie/random_compat": "2.0.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "10.*.*",
-        "phalcon/devtools": ">=5.0"
+        "phpunit/phpunit": "10.4.2",
+        "phalcon/devtools": ">=5.0",
+        "phalcon/incubator": "dev-php8-phalcon5"
     },
     "autoload": {
         "psr-4": { "Phalcon\\UserPlugin\\": "lib/" }
     },
     "scripts": {
         "post-update-cmd": "Phalcon\\UserPlugin\\Migration\\Db::migrate"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/shovv/phalcon-incubator"
+        }
+    ]
 }

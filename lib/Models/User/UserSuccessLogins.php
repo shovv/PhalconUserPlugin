@@ -154,17 +154,14 @@ class UserSuccessLogins extends \Phalcon\Mvc\Model
         return $this->created_at;
     }
 
-    public function getSource()
-    {
-        return 'user_success_logins';
-    }
-
     public function initialize()
     {
         $this->belongsTo('user_id', 'Phalcon\UserPlugin\Models\User\User', 'id', array(
             'alias' => 'user',
             'reusable' => true,
         ));
+
+        $this->setSource('user_success_logins');
     }
 
     /**

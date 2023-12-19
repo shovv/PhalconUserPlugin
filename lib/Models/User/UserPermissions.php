@@ -125,11 +125,6 @@ class UserPermissions extends \Phalcon\Mvc\Model
         return $this->action;
     }
 
-    public function getSource()
-    {
-        return 'user_permissions';
-    }
-
     public function initialize()
     {
         $this->belongsTo('group_id', 'Phalcon\UserPlugin\Models\User\UserGroups', 'id', array(
@@ -138,6 +133,8 @@ class UserPermissions extends \Phalcon\Mvc\Model
                 'action' => \Phalcon\Mvc\Model\Relation::ACTION_CASCADE,
             ),
         ));
+
+        $this->setSource('user_permissions');
     }
 
     /**

@@ -183,11 +183,6 @@ class UserResetPasswords extends \Phalcon\Mvc\Model
         return $this->reset;
     }
 
-    public function getSource()
-    {
-        return 'user_reset_passwords';
-    }
-
     /**
      * @return UserResetPasswords[]
      */
@@ -209,6 +204,8 @@ class UserResetPasswords extends \Phalcon\Mvc\Model
         $this->belongsTo('user_id', 'Phalcon\UserPlugin\Models\User\User', 'id', array(
             'alias' => 'user',
         ));
+
+        $this->setSource('user_reset_passwords');
     }
 
     /**

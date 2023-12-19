@@ -180,11 +180,6 @@ class UserEmailConfirmations extends \Phalcon\Mvc\Model
         return $this->confirmed;
     }
 
-    public function getSource()
-    {
-        return 'user_email_confirmations';
-    }
-
     /**
      * @return UserEmailConfirmations[]
      */
@@ -241,5 +236,7 @@ class UserEmailConfirmations extends \Phalcon\Mvc\Model
         $this->belongsTo('user_id', 'Phalcon\UserPlugin\Models\User\User', 'id', array(
             'alias' => 'user',
         ));
+
+        $this->setSource('user_email_confirmations');
     }
 }

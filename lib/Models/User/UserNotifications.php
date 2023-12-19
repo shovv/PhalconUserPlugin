@@ -255,11 +255,8 @@ class UserNotifications extends \Phalcon\Mvc\Model
             'alias' => 'for_user',
             'reusable' => true,
         ));
-    }
 
-    public function getSource()
-    {
-        return 'user_notifications';
+        $this->setSource('user_notifications');
     }
 
     /**

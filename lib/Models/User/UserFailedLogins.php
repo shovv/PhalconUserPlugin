@@ -122,17 +122,14 @@ class UserFailedLogins extends \Phalcon\Mvc\Model
         return $this->attempted;
     }
 
-    public function getSource()
-    {
-        return 'user_failed_logins';
-    }
-
     public function initialize()
     {
         $this->belongsTo('user_id', 'Phalcon\UserPlugin\Models\User\User', 'id', array(
             'alias' => 'user',
             'reusable' => true,
         ));
+
+        $this->setSource('user_failed_logins');
     }
 
     /**

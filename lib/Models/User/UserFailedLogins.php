@@ -128,6 +128,8 @@ class UserFailedLogins extends \Phalcon\Mvc\Model
             'alias' => 'user',
             'reusable' => true,
         ));
+
+        $this->setSource('user_failed_logins');
     }
 
     /**

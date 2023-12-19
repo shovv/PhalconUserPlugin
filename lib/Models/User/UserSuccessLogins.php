@@ -160,6 +160,8 @@ class UserSuccessLogins extends \Phalcon\Mvc\Model
             'alias' => 'user',
             'reusable' => true,
         ));
+
+        $this->setSource('user_success_logins');
     }
 
     /**

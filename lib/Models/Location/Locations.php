@@ -387,11 +387,7 @@ class Locations extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-    }
-
-    public function getSource()
-    {
-        return 'locations';
+        $this->setSource('locations');
     }
 
     /**

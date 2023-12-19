@@ -319,12 +319,6 @@ class UserProfile extends \Phalcon\Mvc\Model
         $this->setSource('user_profile');
     }
 
-    // @TODO
-    // public function getSource()
-    // {
-    //     return 'user_profile';
-    // }
-
     /**
      * @return UserProfile[]
      */

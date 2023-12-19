@@ -154,11 +154,6 @@ class UserPasswordChanges extends \Phalcon\Mvc\Model
         return $this->created_at;
     }
 
-    public function getSource()
-    {
-        return 'user_password_changes';
-    }
-
     /**
      * @return UserPasswordChanges[]
      */
@@ -188,5 +183,7 @@ class UserPasswordChanges extends \Phalcon\Mvc\Model
         $this->belongsTo('user_id', 'Phalcon\UserPlugin\Models\User\User', 'id', array(
             'alias' => 'user',
         ));
+
+        $this->setSource('user_password_changes');
     }
 }

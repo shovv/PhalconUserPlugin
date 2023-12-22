@@ -2,6 +2,11 @@
 
 namespace Phalcon\UserPlugin\Mail;
 
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
+
 use Phalcon\Di\Injectable as Component;
 use Phalcon\Mvc\View;
 
@@ -18,6 +23,10 @@ class Mail extends Component
 
     protected $_message;
 
+    protected $_sender;
+
+    protected $_recipient;
+
     protected $_mailer;
 
     protected $_directSmtp = true;
@@ -33,20 +42,56 @@ class Mail extends Component
      */
     public function init()
     {
-        $this->_message = \Swift_Message::newInstance();
         $this->mailSettings = $this->config->mail;
 
-        if (!$this->_transport) {
-            $this->_transport = \Swift_SmtpTransport::newInstance(
-                    $this->mailSettings->smtp->server,
-                    $this->mailSettings->smtp->port,
-                    $this->mailSettings->smtp->security
-            )
-            ->setUsername($this->mailSettings->smtp->username)
-            ->setPassword($this->mailSettings->smtp->password);
-        }
+        $this->_message = new Email();
+        $this->addTransport();
+        $this->addSender();
 
-        $this->_mailer = \Swift_Mailer::newInstance($this->_transport);
+        $this->_mailer = new Mailer($this->_transport);
+    }
+
+    /**
+     * Adds a mail transport
+     */
+    public function addTransport()
+    {
+        if (!$this->_transport) {
+            $dsn = sprintf(
+                'smtp://%s:%s@%s:%d',
+                $this->mailSettings->smtp->username,
+                $this->mailSettings->smtp->password,
+                $this->mailSettings->smtp->server,
+                $this->mailSettings->smtp->port,
+            );
+
+            $this->_transport = Transport::fromDsn($dsn);
+        }
+    }
+
+    /**
+     * Adds a email sender
+     */
+    public function addSender()
+    {
+        if(!$this->_sender) {
+            $this->$_sender = new Address(
+                $this->mailSettings->fromName,
+                $this->mailSettings->fromEmail
+            );
+        }
+        
+    }
+
+    /**
+     * Adds a email recipient
+     *
+     * @param string $name
+     * @param string $email
+     */
+    public function addRecipient($name, $email)
+    {
+        $this->$_recipient = new Address($email, $name);
     }
 
     /**
@@ -103,9 +148,9 @@ class Mail extends Component
     }
 
     /**
-     * Get the instance of \Swift_Mailer
+     * Get the instance of \Mailer
      *
-     * @return \Swift_Mailer
+     * @return \Mailer
      */
     public function getMailer()
     {
@@ -113,9 +158,9 @@ class Mail extends Component
     }
 
     /**
-     * Ge instance of \Swift_Message
+     * Ge instance of \Email
      *
-     * @return \Swift_Message
+     * @return \Email
      */
     public function getMessage()
     {
@@ -132,7 +177,7 @@ class Mail extends Component
      * @param array  $params
      * @param array  $body
      */
-    public function send($to, $subject, $name = null, $params = null, $body = null)
+    public function send($subject, $name = null, $params = null, $body = null)
     {
         //Images
         if (isset($params['images'])) {
@@ -146,12 +191,10 @@ class Mail extends Component
         }
 
          // Setting message params
-        $this->_message->setSubject($subject)
-            ->setTo($to)
-            ->setFrom(array(
-                $this->mailSettings->fromEmail => $this->mailSettings->fromName,
-            ))
-            ->setBody($template, 'text/html');
+        $this->_message->from($this->_sender)
+            ->to($this->$_recipient)
+            ->subject($subject)
+            ->html($template);
 
         // Check attachments to add
         foreach ($this->attachments as $file) {
@@ -163,7 +206,7 @@ class Mail extends Component
         }
 
         $result = $this->_mailer->send($this->_message);
-        $this->_mailer->getTransport()->stop();
+        // $this->_mailer->getTransport()->stop();
 
         $this->attachments = array();
 

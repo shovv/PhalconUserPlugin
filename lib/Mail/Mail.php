@@ -6,6 +6,8 @@ use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Part\DataPart;
+use Symfony\Component\Mime\Part\File;
 
 use Phalcon\Di\Injectable as Component;
 use Phalcon\Mvc\View;
@@ -54,7 +56,7 @@ class Mail extends Component
     /**
      * Adds a mail transport
      */
-    public function addTransport()
+    private function addTransport()
     {
         if (!$this->_transport) {
             $dsn = sprintf(
@@ -72,12 +74,12 @@ class Mail extends Component
     /**
      * Adds a email sender
      */
-    public function addSender()
+    private function addSender()
     {
         if(!$this->_sender) {
-            $this->$_sender = new Address(
-                $this->mailSettings->fromName,
-                $this->mailSettings->fromEmail
+            $this->_sender = new Address(
+                $this->mailSettings->fromEmail,
+                $this->mailSettings->fromName
             );
         }
         
@@ -89,9 +91,9 @@ class Mail extends Component
      * @param string $name
      * @param string $email
      */
-    public function addRecipient($name, $email)
+    public function addRecipient($email, $name)
     {
-        $this->$_recipient = new Address($email, $name);
+        $this->_recipient = new Address($email, $name);
     }
 
     /**
@@ -192,16 +194,18 @@ class Mail extends Component
 
          // Setting message params
         $this->_message->from($this->_sender)
-            ->to($this->$_recipient)
+            ->to($this->_recipient)
             ->subject($subject)
             ->html($template);
 
         // Check attachments to add
         foreach ($this->attachments as $file) {
-            $this->_message->attach(\Swift_Attachment::newInstance()
-                ->setBody($file['content'])
-                ->setFilename($file['name'])
-                ->setContentType($file['type'])
+            $this->_message->addPart(
+                new DataPart(
+                    new File($file['content']),
+                    $file['name'],
+                    $file['type']
+                )
             );
         }
 

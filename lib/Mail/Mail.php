@@ -210,8 +210,8 @@ class Mail extends Component
         }
 
         $result = $this->_mailer->send($this->_message);
-        // $this->_mailer->getTransport()->stop();
 
+        $this->_transport->stop();
         $this->attachments = array();
 
         return $result;

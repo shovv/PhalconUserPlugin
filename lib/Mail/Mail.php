@@ -118,6 +118,7 @@ class Mail extends Component
      */
     public function getTemplate($message, $name, $params)
     {
+        // @TODO feature/5-refactor-mail-class 
         $parameters = array_merge(array(
             'publicUrl' => $this->config->application->publicUrl,
         ), $params);
@@ -141,6 +142,7 @@ class Mail extends Component
      */
     public function insertImages($message, $content)
     {
+        // @TODO feature/5-refactor-mail-class 
         foreach ($this->images as $name => $image_path) {
             $image_embed = $message->embed(\Swift_Image::fromPath($image_path));
             $content = str_replace(rawurlencode('{{ '.$name.' }}'), $image_embed, $content);

@@ -5,8 +5,8 @@ namespace Phalcon\UserPlugin\Forms\User;
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Submit;
-use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\Email;
+use Phalcon\Filter\Validation\Validator\PresenceOf;
+use Phalcon\Filter\Validation\Validator\Email;
 
 /**
  * Phalcon\UserPlugin\Forms\User\ForgotPasswordForm.

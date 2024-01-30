@@ -12,8 +12,6 @@ use Symfony\Component\Mime\Part\File;
 use Phalcon\Di\Injectable as Component;
 use Phalcon\Mvc\View;
 
-// @TODO Upgrade to Symfony Mailer
-
 /**
  * Phalcon\UserPlugin\Mail\Mail.
  *

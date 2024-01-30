@@ -2,7 +2,7 @@
 
 namespace Phalcon\UserPlugin\Models\User;
 
-use Phalcon\Mvc\Model\Validator\Uniqueness;
+use Phalcon\Filter\Validation\Validator\Uniqueness;
 use Phalcon\Mvc\Model\ResultsetInterface;
 
 class UserGroups extends \Phalcon\Mvc\Model

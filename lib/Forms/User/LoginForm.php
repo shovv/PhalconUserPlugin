@@ -8,9 +8,9 @@ use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Element\Hidden;
-use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\Email;
-use Phalcon\Validation\Validator\Identical;
+use Phalcon\Filter\Validation\Validator\PresenceOf;
+use Phalcon\Filter\Validation\Validator\Email;
+use Phalcon\Filter\Validation\Validator\Identical;
 
 /**
  * Phalcon\UserPlugin\Forms\User\LoginForm.

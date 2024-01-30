@@ -4,9 +4,9 @@ namespace Phalcon\UserPlugin\Forms\User;
 
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Password;
-use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\StringLength;
-use Phalcon\Validation\Validator\Confirmation;
+use Phalcon\Filter\Validation\Validator\PresenceOf;
+use Phalcon\Filter\Validation\Validator\StringLength;
+use Phalcon\Filter\Validation\Validator\Confirmation;
 
 /**
  * Phalcon\UserPlugin\Forms\User\ChangePasswordForm.

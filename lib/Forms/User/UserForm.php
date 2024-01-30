@@ -6,7 +6,7 @@ use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Hidden;
 use Phalcon\Forms\Element\Select;
-use Phalcon\Validation\Validator\Email;
+use Phalcon\Filter\Validation\Validator\Email;
 use Phalcon\UserPlugin\Models\User\UserGroups;
 
 /**

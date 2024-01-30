@@ -3,7 +3,7 @@
 namespace Phalcon\UserPlugin\Models\User;
 
 use Phalcon\Filter\Validation;
-use Phalcon\Validation\Validator\Uniqueness;
+use Phalcon\Filter\Validation\Validator\Uniqueness;
 use Phalcon\Mvc\Model\ResultsetInterface;
 
 class User extends \Phalcon\Mvc\Model
